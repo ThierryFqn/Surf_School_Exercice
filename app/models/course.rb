@@ -2,6 +2,7 @@ class Course < ApplicationRecord
   belongs_to :school
   has_many :bookings, dependent: :destroy
   has_many :users, through: :bookings
+  has_many_attached :photos
 
   SPORT_TYPES = %w[Kitesurf Surf Bodyboard Kitefoil Paddle]
 

@@ -1,0 +1,24 @@
+<div class="search-form-control form-group mt-3">
+  <%= simple_form_for :search, url: courses_path, method: :get do |f| %>
+    <div class="product-search home-search">
+      <div class="search-element" data-controller='places'>
+        <label class="search-label">Où?</label>
+        <%= f.input :address,
+              label:false,
+              input_html: { data: { geocoder_target: "address" }, class: 'd-none' },
+              wrapper_html: { data: { controller: "geocoder", geocoder_api_key_value: ENV['MAPBOX_API_KEY'] } } %>
+        <%#= f.input :address, label: false, placeholder: "Localisation" %>
+      </div>
+      <div class="search-element search-element-option2">
+        <label class="search-label">Quel sport?</label>
+        <div class="search-date">
+          <%= f.input :sport, required: false, label: false, prompt: "Selectionnez votre sport", collection: Course::SPORT_TYPES, multiple: true %>
+        </div>
+      </div>
+        <%#= f.submit class:"search-button", value: "GO" %>
+      <%= button_tag type: 'submit', class: "search-button", id: "search" do %>
+          <i class="fas fa-search" aria-hidden="true"></i>
+      <% end %>
+    </div>
+  <% end %>
+</div>
