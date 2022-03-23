@@ -8,7 +8,7 @@ class CoursePolicy < ApplicationPolicy
   end
 
   def show?
-    skip_authorization
+    true
   end
 
 end

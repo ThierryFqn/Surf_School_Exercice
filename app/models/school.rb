@@ -6,6 +6,7 @@ class School < ApplicationRecord
 
   has_many :courses, dependent: :destroy
   has_one_attached :photo
+  has_one_attached :logo
 
   validates :name, :address, presence: true
 end

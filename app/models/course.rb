@@ -4,6 +4,8 @@ class Course < ApplicationRecord
   has_many :users, through: :bookings
   has_many_attached :photos
 
+  reverse_geocoded_by "schools.latitude", "schools.longitude"
+
   SPORT_TYPES = %w[Kitesurf Surf Bodyboard Kitefoil Paddle]
 
   validates :sport, :description, presence: true

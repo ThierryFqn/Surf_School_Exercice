@@ -40,6 +40,13 @@ def assign_photo(record, url)
   puts 'Photo ajoutée'
 end
 
+def assign_logo(record, url)
+  file = URI.open(url)
+  record.logo.attach(io: file, filename: "logo#{record}", content_type: 'image/png')
+  record.save!
+  puts 'Logo ajoutée'
+end
+
 assign_photo(teachers[0], "https://avatars.githubusercontent.com/meligateau")
 assign_photo(teachers[1], "https://avatars.githubusercontent.com/u/30435844?v=4")
 assign_photo(teachers[2], "https://avatars.githubusercontent.com/u/90208637?v=4")
@@ -68,6 +75,7 @@ puts "Creating Schools..."
 puts 'create first school'
 school_1 = School.new(name: 'Surf in Biarritz', address: "Plateau de l'Atalaye, 64200 Biarritz", user: teachers[0])
 assign_photo(school_1, "https://www.surfinbiarritz.com/wp-content/uploads/2020/03/LOGO-FOND-BLANC.png")
+assign_logo(school_1, "https://tabagisme.unisante.ch/wp-content/uploads/2019/09/test.jpg")
 puts "Create #{school_1.name}"
 school_2 = School.new(name: 'SAMA-SAMA', address: "18 avenue Beaurivage à Biarritz, 64200 Biarritz", user: teachers[1])
 assign_photo(school_2, "https://ecoledesurfmimizan.fr/wp-content/uploads/2021/04/sama-logo-proper-v2.png")
@@ -75,7 +83,7 @@ puts "Create #{school_2.name}"
 school_3 = School.new(name: 'Ecole française de Surf', address: "10 Rue du Port-Vieux, 64200 Biarritz", user: teachers[2])
 assign_photo(school_3, "https://www.surfingfrance.com/images/000-Articles/2020T1/logos_label20-04.jpg")
 puts "Create #{school_3.name}"
-school_4 = School.new(name: 'Jo Moraiz', address: "5 Pl. Bellevue, 64200 Biarritz", user: teachers[3])
+school_4 = School.new(name: 'Jo Moraiz', address: "Biscarosse", user: teachers[3])
 assign_photo(school_4, "https://www.jomoraiz.com/wp-content/uploads/2018/01/logo-jomoraiz-2016-300x300.png")
 puts "Create #{school_4.name}"
 school_5 = School.new(name: 'Ocean Beach', address: "30 Av. de la Milady, 64200 Biarritz", user: teachers[4])
